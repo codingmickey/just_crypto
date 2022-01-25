@@ -36,7 +36,7 @@ public class Startup extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Just Crypto");
-        setBackground(new java.awt.Color(13, 1, 6));
+        setBackground(new java.awt.Color(51, 255, 51));
         setPreferredSize(new java.awt.Dimension(424, 387));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
