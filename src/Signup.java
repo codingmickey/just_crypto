@@ -1,5 +1,8 @@
 
 import db.Validate;
+import db.DBConnection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 
 /*
@@ -285,8 +288,6 @@ public class Signup extends javax.swing.JFrame {
         userName = name.getText();
         userPassword = password.getText();
 
-        System.out.print(userName);
-
         if (name.getText().equals("") || userName.length() < 4) {
             error.setVisible(true);
             error.setSize(400, 150);
@@ -303,6 +304,12 @@ public class Signup extends javax.swing.JFrame {
             error.setLocation(450, 250);
             errorText.setText("Enter a valid password");
         } else {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            DBConnection.saveUser(userName, userEmail, userPassword);
             success.setVisible(true);
             success.setSize(400, 150);
             success.setLocation(450, 250);
