@@ -16,11 +16,12 @@ public class Buy extends javax.swing.JFrame {
     /**
      * Creates new form Buy
      */
-    public Buy() {
+    public Buy(String coinName) {
+        this.coinName = coinName;
         initComponents();
         this.setLocation(500, 200);
-        jLabel1.setText("Buy "+"");
-        jLabel4.setText("Current Balance: ₹"+GetInfo.getBalance(GetInfo.userEmail).toString());
+        jLabel1.setText("Buy " + coinName);
+        jLabel4.setText("Current Balance: ₹" + GetInfo.getBalance(GetInfo.userEmail));
     }
 
     /**
@@ -108,8 +109,8 @@ public class Buy extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton2)
-                        .addGap(64, 64, 64)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -180,18 +181,17 @@ public class Buy extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         float money = Float.parseFloat(jTextField1.getText());
-        float balance = (float)GetInfo.getBalance(GetInfo.userEmail);
-        if (balance >= money) { 
+        float balance = (float) GetInfo.getBalance(GetInfo.userEmail);
+        if (balance >= money) {
             jTextField1.setText(null);
             balance = balance - money;
-            if(SetInfo.updateBalance(balance)){
-              jLabel6.setText("Purchased ₹" + money + " amount Bitcoin");  
-              jLabel4.setText("Current Balance: ₹" + balance);
-            } 
-            else{
+            if (SetInfo.updateBalance(balance)) {
+                jLabel6.setText("Purchased ₹" + money + " amount " + GetInfo.getAbbr(coinName));
+                jLabel4.setText("Current Balance: ₹" + balance);
+                SetInfo.updateOwned(coinName, money);
+            } else {
                 jLabel6.setText("Transaction Failed");
-                jLabel4.setText("Current Balance: ₹" + balance+money);
-            } 
+            }
         } else {
             jLabel6.setText("Out of Money");
             jTextField1.setText(null);
@@ -230,12 +230,14 @@ public class Buy extends javax.swing.JFrame {
         // </editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Buy().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Buy("").setVisible(true);
+//            }
+//        });
     }
+
+    private String coinName = "NONE";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

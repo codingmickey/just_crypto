@@ -4,6 +4,10 @@
  */
 package app;
 
+import db.GetInfo;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author Kartik
@@ -16,6 +20,38 @@ public class OwnedCypto extends javax.swing.JFrame {
     public OwnedCypto() {
         initComponents();
         this.setLocation(500, 200);
+
+        jLabel8.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                onMouseClicked(e);
+            }
+        });
+        jLabel10.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                onMouseClicked(e);
+            }
+        });
+        jLabel12.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                onMouseClicked(e);
+            }
+        });
+        jLabel15.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                onMouseClicked(e);
+            }
+        });
+
+        jLabel19.setText(GetInfo.getUserName(GetInfo.userEmail) + ", Your Porfolio");
+        jLabel2.setText(Float.toString(GetInfo.getUserQuantity("Bitcoin")));
+        jLabel7.setText(Float.toString(GetInfo.getUserQuantity("Dogecoin")));
+        jLabel14.setText(Float.toString(GetInfo.getUserQuantity("Ethereum")));
+        jLabel17.setText(Float.toString(GetInfo.getUserQuantity("Litecoin")));
+
     }
 
     /**
@@ -120,6 +156,11 @@ public class OwnedCypto extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(61, 82, 213));
         jButton2.setForeground(new java.awt.Color(255, 255, 252));
         jButton2.setText("🏠");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 252));
@@ -230,6 +271,19 @@ public class OwnedCypto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Dashboard d = new Dashboard();
+        d.show();
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void onMouseClicked(MouseEvent e) {
+        Sell s = new Sell(((javax.swing.JLabel) e.getSource()).getText());
+        s.show();
+        dispose();
+    }
 
     /**
      * @param args the command line arguments

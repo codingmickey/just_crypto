@@ -4,6 +4,9 @@
  */
 package app;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author Kartik
@@ -16,6 +19,31 @@ public class BuyingOptions extends javax.swing.JFrame {
     public BuyingOptions() {
         initComponents();
         this.setLocation(500, 200);
+
+        crypto1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                onMouseClicked(e);
+            }
+        });
+        crypto2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                onMouseClicked(e);
+            }
+        });
+        crypto3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                onMouseClicked(e);
+            }
+        });
+        crypto4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                onMouseClicked(e);
+            }
+        });
     }
 
     /**
@@ -29,15 +57,15 @@ public class BuyingOptions extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        crypto1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        crypto2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        crypto3 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        crypto4 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -46,7 +74,7 @@ public class BuyingOptions extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Buy Crypto");
-        setPreferredSize(new java.awt.Dimension(400, 335));
+        setPreferredSize(new java.awt.Dimension(424, 387));
 
         jPanel1.setBackground(new java.awt.Color(13, 1, 6));
         jPanel1.setForeground(new java.awt.Color(255, 255, 252));
@@ -56,19 +84,19 @@ public class BuyingOptions extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("₹ 2750026");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 252));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("Bitcoin");
+        crypto1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        crypto1.setForeground(new java.awt.Color(255, 255, 252));
+        crypto1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        crypto1.setText("Bitcoin");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(108, 207, 246));
         jLabel9.setText("BTC");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 252));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel10.setText("Dogecoin");
+        crypto2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        crypto2.setForeground(new java.awt.Color(255, 255, 252));
+        crypto2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        crypto2.setText("Dogecoin");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(108, 207, 246));
@@ -79,10 +107,10 @@ public class BuyingOptions extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("₹ 10");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 252));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel12.setText("Ethereum");
+        crypto3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        crypto3.setForeground(new java.awt.Color(255, 255, 252));
+        crypto3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        crypto3.setText("Ethereum");
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(108, 207, 246));
@@ -93,10 +121,10 @@ public class BuyingOptions extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel14.setText("₹ 198287");
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 252));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel15.setText("Litecoin");
+        crypto4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        crypto4.setForeground(new java.awt.Color(255, 255, 252));
+        crypto4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        crypto4.setText("Litecoin");
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(108, 207, 246));
@@ -120,6 +148,11 @@ public class BuyingOptions extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(61, 82, 213));
         jButton2.setForeground(new java.awt.Color(255, 255, 252));
         jButton2.setText("🏠");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,25 +170,25 @@ public class BuyingOptions extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
+                                .addComponent(crypto4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel17))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
+                                .addComponent(crypto3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                                 .addComponent(jLabel14))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
+                                .addComponent(crypto2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel7))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
+                                .addComponent(crypto1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,20 +212,20 @@ public class BuyingOptions extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(crypto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(crypto2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(crypto3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(crypto4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(16, 16, 16))
@@ -211,6 +244,19 @@ public class BuyingOptions extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Dashboard d = new Dashboard();
+        d.show();
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void onMouseClicked(MouseEvent e) {
+        Buy b = new Buy(((javax.swing.JLabel) e.getSource()).getText());
+        b.show();
+        dispose();
+    }
 
     /**
      * @param args the command line arguments
@@ -248,20 +294,20 @@ public class BuyingOptions extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel crypto1;
+    private javax.swing.JLabel crypto2;
+    private javax.swing.JLabel crypto3;
+    private javax.swing.JLabel crypto4;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

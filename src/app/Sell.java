@@ -1,5 +1,8 @@
 package app;
 
+import db.GetInfo;
+import db.SetInfo;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -13,9 +16,13 @@ public class Sell extends javax.swing.JFrame {
     /**
      * Creates new form Sell
      */
-    public Sell(String userEmail) {
+    public Sell(String coinName) {
         initComponents();
         this.setLocation(500, 200);
+        this.coinName = coinName;
+        jLabel1.setText("SELL " + coinName);
+        jLabel4.setText("Enter Amount in " + GetInfo.getAbbr(coinName));
+        jLabel6.setText("Current Balance: " + GetInfo.getUserQuantity(coinName) + " " + GetInfo.getAbbr(coinName));
     }
 
     /**
@@ -46,6 +53,11 @@ public class Sell extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(61, 82, 213));
         jButton2.setForeground(new java.awt.Color(255, 255, 252));
         jButton2.setText("🏠");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(240, 240, 240));
@@ -55,7 +67,7 @@ public class Sell extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(240, 240, 240));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 255, 204));
+        jLabel4.setForeground(new java.awt.Color(108, 207, 246));
         jLabel4.setText("Enter Amount in Bitcoin");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -119,7 +131,7 @@ public class Sell extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(107, 107, 107)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel1)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -169,20 +181,29 @@ public class Sell extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Dashboard d = new Dashboard();
+        d.show();
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         float num = Float.parseFloat(jTextField1.getText());
-        float balance = 100000;
+        float balance = GetInfo.getBalance(GetInfo.userEmail);
         float soldMoney;
-        float currentPrice = 1000;
-        float currentCoins = 3.45f;
+        float currentPrice = GetInfo.getCoinPrice(coinName);
+        float currentCoins = GetInfo.getUserQuantity(coinName);
         if (num <= currentCoins) {
             soldMoney = currentPrice * num;
-            jLabel5.setText("Sold ₹" + soldMoney + " amount Bitcoin");
+            jLabel5.setText("Sold ₹" + soldMoney + " amount " + GetInfo.getAbbr(coinName));
             jTextField1.setText(null);
             currentCoins -= num;
             balance = balance + soldMoney;
-            jLabel6.setText("Current Balance: " + currentCoins + " BTC");
+            SetInfo.updateBalance(balance);
+            SetInfo.updateQuantity(coinName, currentCoins);
+            jLabel6.setText("Current Balance: " + currentCoins + " " + GetInfo.getAbbr(coinName));
         } else {
             jLabel5.setText("Out of Amount");
             jTextField1.setText(null);
@@ -228,6 +249,7 @@ public class Sell extends javax.swing.JFrame {
 //        });
     }
 
+    private String coinName = "NONE";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
