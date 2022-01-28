@@ -1,3 +1,4 @@
+package auth;
 
 import db.Validate;
 import db.DBConnection;
