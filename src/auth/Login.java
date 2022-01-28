@@ -324,7 +324,7 @@ public class Login extends javax.swing.JFrame {
 
     private void successDialogExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_successDialogExitActionPerformed
         // Success Dialog dispose
-        Dashboard d = new Dashboard(userEmail);
+        Dashboard d = new Dashboard();
         d.show();
         dispose();
         success.dispose();
