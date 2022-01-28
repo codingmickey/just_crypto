@@ -1,7 +1,10 @@
 package auth;
 
+import startup.Startup;
+import app.Dashboard;
 import db.Validate;
 import db.DBConnection;
+import db.GetInfo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -103,6 +106,7 @@ public class Signup extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        success.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         success.setTitle("Success!");
 
         jPanel3.setBackground(new java.awt.Color(13, 1, 6));
@@ -171,6 +175,7 @@ public class Signup extends javax.swing.JFrame {
         jLabel2.setText("Name:");
 
         name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        name.setText("fsjdkl");
         name.setToolTipText("Enter your name here");
         name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,6 +188,7 @@ public class Signup extends javax.swing.JFrame {
         jLabel3.setText("Email:");
 
         email.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        email.setText("abc@gmail.com");
         email.setToolTipText("Enter your email here");
         email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +213,7 @@ public class Signup extends javax.swing.JFrame {
             }
         });
 
+        password.setText("ffdsfdsfsdf");
         password.setToolTipText("Enter more than 7 digits");
         password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,10 +317,17 @@ public class Signup extends javax.swing.JFrame {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
             }
-            DBConnection.saveUser(userName, userEmail, userPassword);
-            success.setVisible(true);
-            success.setSize(400, 150);
-            success.setLocation(450, 250);
+            if (DBConnection.saveUser(userName, userEmail, userPassword)) {
+                success.setVisible(true);
+                success.setSize(400, 150);
+                success.setLocation(450, 250);
+                GetInfo.userEmail = userEmail;
+            } else {
+                error.setVisible(true);
+                error.setSize(500, 150);
+                error.setLocation(450, 250);
+                errorText.setText("Email Id already present!");
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -326,11 +340,17 @@ public class Signup extends javax.swing.JFrame {
     }//GEN-LAST:event_nameActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        // HOME Button
+        Startup s = new Startup();
+        s.show();
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void successDialogExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_successDialogExitActionPerformed
         // Success Dialog dispose
+        Dashboard d = new Dashboard();
+        d.show();
+        dispose();
         success.dispose();
     }//GEN-LAST:event_successDialogExitActionPerformed
 

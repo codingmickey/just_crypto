@@ -1,5 +1,13 @@
 package auth;
 
+import db.DBConnection;
+import db.Validate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import startup.Startup;
+import app.Dashboard;
+import db.GetInfo;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -15,6 +23,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setLocation(500, 200);
     }
 
     /**
@@ -26,25 +35,124 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        error = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        errorText = new javax.swing.JLabel();
+        successDialogExit1 = new javax.swing.JButton();
+        success = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        successText = new javax.swing.JLabel();
+        successDialogExit = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        error.setTitle("Error!");
+
+        jPanel2.setBackground(new java.awt.Color(13, 1, 6));
+
+        errorText.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        errorText.setForeground(new java.awt.Color(217, 4, 41));
+        errorText.setText("Enter a valid Email");
+        errorText.setToolTipText("");
+
+        successDialogExit1.setBackground(new java.awt.Color(61, 82, 213));
+        successDialogExit1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        successDialogExit1.setForeground(new java.awt.Color(255, 255, 252));
+        successDialogExit1.setText("OK");
+        successDialogExit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                successDialogExit1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(successDialogExit1)
+                    .addComponent(errorText))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(errorText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(successDialogExit1)
+                .addContainerGap(224, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout errorLayout = new javax.swing.GroupLayout(error.getContentPane());
+        error.getContentPane().setLayout(errorLayout);
+        errorLayout.setHorizontalGroup(
+            errorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        errorLayout.setVerticalGroup(
+            errorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        success.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        success.setTitle("Success!");
+
+        jPanel3.setBackground(new java.awt.Color(13, 1, 6));
+
+        successText.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        successText.setForeground(new java.awt.Color(173, 252, 146));
+        successText.setText("Log in Success!");
+        successText.setToolTipText("");
+
+        successDialogExit.setBackground(new java.awt.Color(61, 82, 213));
+        successDialogExit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        successDialogExit.setForeground(new java.awt.Color(255, 255, 252));
+        successDialogExit.setText("OK");
+        successDialogExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                successDialogExitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(successDialogExit)
+                    .addComponent(successText))
+                .addContainerGap(123, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(successText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(successDialogExit)
+                .addContainerGap(224, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout successLayout = new javax.swing.GroupLayout(success.getContentPane());
+        success.getContentPane().setLayout(successLayout);
+        successLayout.setHorizontalGroup(
+            successLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        successLayout.setVerticalGroup(
+            successLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,12 +171,12 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 252));
         jLabel3.setText("Email:");
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField2.setText(" ");
-        jTextField2.setToolTipText("Enter your email here");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        email.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        email.setText("meet@gmail.com");
+        email.setToolTipText("Enter your email here");
+        email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                emailActionPerformed(evt);
             }
         });
 
@@ -89,11 +197,17 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setToolTipText("Enter more than 7 digits");
+        password.setText("meeetp123");
+        password.setToolTipText("Enter more than 7 digits");
 
         jButton2.setBackground(new java.awt.Color(61, 82, 213));
         jButton2.setForeground(new java.awt.Color(255, 255, 252));
         jButton2.setText("🏠");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,8 +222,8 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel1)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1)))
+                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(password)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton2)))
@@ -125,11 +239,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel3)
                 .addGap(2, 2, 2)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGap(1, 1, 1)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(66, Short.MAX_VALUE))
@@ -150,16 +264,71 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Login button pressed");
-        jDialog1 = new javax.swing.JDialog(this, "Successful Login", true);
-        jDialog1.setSize(300, 300);
-        jDialog1.setVisible(true);
+        // LOG IN Button
+
+        userEmail = email.getText();
+        userPassword = password.getText();
+
+        System.out.println(userEmail + " " + userPassword);
+
+        if (!Validate.validate(userEmail)) {
+            error.setVisible(true);
+            error.setSize(400, 150);
+            error.setLocation(450, 250);
+            errorText.setText("Enter a valid email");
+        } else if (userPassword.length() < 8) {
+            error.setVisible(true);
+            error.setSize(475, 150);
+            error.setLocation(450, 250);
+            errorText.setText("Enter a valid password");
+        } else {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (DBConnection.checkUser(userEmail, userPassword) == 2) {
+                error.setVisible(true);
+                error.setSize(450, 150);
+                error.setLocation(450, 250);
+                errorText.setText("Email Id not present!");
+            } else if (DBConnection.checkUser(userEmail, userPassword) == 1) {
+                error.setVisible(true);
+                error.setSize(450, 150);
+                error.setLocation(450, 250);
+                errorText.setText("Incorrect Password!");
+            } else if (DBConnection.checkUser(userEmail, userPassword) == 0) {
+                success.setVisible(true);
+                success.setSize(400, 150);
+                success.setLocation(450, 250);
+                GetInfo.userEmail = userEmail;
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_emailActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // HOME Button
+        Startup s = new Startup();
+        s.show();
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void successDialogExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_successDialogExit1ActionPerformed
+        // Error Dialog dispose
+        error.dispose();
+    }//GEN-LAST:event_successDialogExit1ActionPerformed
+
+    private void successDialogExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_successDialogExitActionPerformed
+        // Success Dialog dispose
+        Dashboard d = new Dashboard(userEmail);
+        d.show();
+        dispose();
+        success.dispose();
+    }//GEN-LAST:event_successDialogExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,15 +366,24 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
+    private String userPassword, userEmail;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField email;
+    private javax.swing.JDialog error;
+    private javax.swing.JLabel errorText;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JDialog success;
+    private javax.swing.JButton successDialogExit;
+    private javax.swing.JButton successDialogExit1;
+    private javax.swing.JLabel successText;
     // End of variables declaration//GEN-END:variables
 }
