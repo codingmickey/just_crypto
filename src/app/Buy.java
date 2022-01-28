@@ -1,5 +1,8 @@
 package app;
 
+import db.GetInfo;
+import db.SetInfo;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -16,6 +19,8 @@ public class Buy extends javax.swing.JFrame {
     public Buy() {
         initComponents();
         this.setLocation(500, 200);
+        jLabel1.setText("Buy "+"");
+        jLabel4.setText("Current Balance: ₹"+GetInfo.getBalance(GetInfo.userEmail).toString());
     }
 
     /**
@@ -167,17 +172,26 @@ public class Buy extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        Dashboard d = new Dashboard();
+        d.show();
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        long money = Integer.parseInt(jTextField1.getText());
-        long balance = 100000;
-        if (balance >= money) {
-            jLabel6.setText("Purchased ₹" + money + " amount Bitcoin");
+        float money = Float.parseFloat(jTextField1.getText());
+        float balance = (float)GetInfo.getBalance(GetInfo.userEmail);
+        if (balance >= money) { 
             jTextField1.setText(null);
             balance = balance - money;
-            jLabel4.setText("Current Balance: ₹" + balance);
+            if(SetInfo.updateBalance(balance)){
+              jLabel6.setText("Purchased ₹" + money + " amount Bitcoin");  
+              jLabel4.setText("Current Balance: ₹" + balance);
+            } 
+            else{
+                jLabel6.setText("Transaction Failed");
+                jLabel4.setText("Current Balance: ₹" + balance+money);
+            } 
         } else {
             jLabel6.setText("Out of Money");
             jTextField1.setText(null);
